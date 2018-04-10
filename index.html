@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<style>
+body {
+    background: #eef;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+}
+input {
+    margin-bottom: 20px;
+}
+textarea {
+    font-family: Consolas, Menlo, monospace;
+    height: 10rem;
+    overflow: auto;
+    white-space: pre;
+    width: 100%;
+}
+</style>
+</head>
+
+<body>
+<h2>
+side-channel-attack example to modify/read private-fields
+through hijacked dom-inputs and XMLHttpRequest
+</h2>
+<label>username</label><br>
+<input id="inputUsername" type="text" value="john"></input><br>
+<label>password</label><br>
+<input id="inputPassword" type="password" value="secret"></input><br>
+<input id="inputSubmit" type="button" value="edit inputs and click to login"></input><br>
+<label>stdout</label><br>
+<textarea id="textareaStdout"></textarea>
+
+<script src="jquery.from.untrusted.cdn.js"></script>
+<script src="login.js"></script>
+</body>
+
+</html>
