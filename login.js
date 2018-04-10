@@ -16,6 +16,7 @@
 (function () {
     'use strict';
     var LoginClass, loginInstance, xhr;
+    // create class with private-fields and accessors
     LoginClass = function () {
         var privatePassword, privateUsername;
         this.getPassword = function () {
@@ -33,9 +34,11 @@
     };
     // init event-handling
     document.querySelector('#inputSubmit').addEventListener('click', function () {
+        // create class-instance and set private-fields from dom-inputs
         loginInstance = new LoginClass();
         loginInstance.setPassword(document.querySelector('#inputPassword').value);
         loginInstance.setUsername(document.querySelector('#inputUsername').value);
+        // submit login-request through XMLHttpRequest with private-fields
         xhr = new XMLHttpRequest();
         xhr.open('POST', '/login');
         xhr.send(JSON.stringify({
